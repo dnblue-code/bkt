@@ -1,0 +1,99 @@
+<script>
+    var chars={
+        "I":1,
+        "V":5,
+        "X":10,
+        "L":50,
+        "C":100,
+        "D":500,
+        "M":1000   
+    }
+
+    var keys=Object.keys(chars);
+
+    function max(before,a,index){
+        var key=keys[index];
+        var value=chars[key];
+        var result=before;
+
+        if(value<=a){
+            var m=(a-a%value)/value;
+            
+            
+            
+            a=a-m*value;
+            var m2=0;
+            if(m>4){
+                m2=m-4;
+                m=4;
+            }
+            a+=m2*value;
+            
+
+            var s=key;
+
+            if(m==4)
+            {
+                s=keys[index]+keys[index+1];
+            }
+            else{
+                for(var i=0;i<m-1;i++){
+                    s+=key;
+                }
+            }
+
+
+            result[index]=new Object();
+
+            result[index].m=m;
+
+            result[index].s=s;
+
+           
+        }
+        else{
+            result[index]=new Object();
+            result[index].s="";
+        }
+        if(index>=1){
+            result=max(result,a,index-1);
+        }
+
+        return result;
+    }
+
+    function fix(str){
+        var result="";
+        for(var i=0;i<str.length;i++){
+            if(str[i]!=str[i+2]){
+                result+=str[i];
+            }    
+            else{
+                var index=keys.indexOf(str[i]);
+                
+                result+=str[i+1]+keys[index+1];
+                i+=3;
+            }
+        }
+        return result;
+    }
+
+    function soLM(a){
+        var result="";
+
+        var parts=(max([],a,Object.keys(chars).length-1));
+
+        for(var i=parts.length-1;i>=0;i--){
+            result+=parts[i].s;
+        }
+
+        var fixed=fix(result);
+
+        result=fixed;
+
+        return result;
+    }
+
+    console.log(soLM(259));
+
+</script>

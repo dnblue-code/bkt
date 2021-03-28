@@ -1,0 +1,14 @@
+<script>
+    function palindrome(str) {
+        let result=true;
+        str=str.toUpperCase();
+        for(let i=0;i<str.length/2;i++){
+            if(str[i]!=str[str.length-i-1]){
+                result=false;
+            }
+        }
+        return result;
+    }
+
+    console.log(palindrome("racecaR"));
+</script>

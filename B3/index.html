@@ -1,0 +1,47 @@
+<script>
+    class Employee{
+        constructor(info){
+            this.taskList=info.taskList;
+            this.name=info.name;
+        }
+        displayInfo(){
+            console.log(this.name,this.taskList);
+        }
+    }
+
+    class Manager extends Employee{
+        constructor(info){
+            super(info);
+            this.employees=info.employees;
+            this.type="Manager";
+            if(this.employees==null)
+                this.employees=[];
+        }
+
+        addEmployee(e){
+            this.employees.push(e);
+        }
+
+        displayInfo(){
+            
+            console.log(this.name,this.taskList,this.employees);
+        }
+
+    }
+
+    class Developer extends Employee{
+        constructor(info){
+            super(info);
+            this.type="Deverloper";
+        }
+    }
+
+    class Tester extends Employee{
+        constructor(info){
+            super(info);
+            this.type="Tester";
+        }
+
+
+    }
+</script>
